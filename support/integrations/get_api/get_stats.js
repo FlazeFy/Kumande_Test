@@ -3,7 +3,6 @@ import { generateAuthToken } from '../../components/generate'
 import '../../components/template'
 
 describe('Kumande API Testing - Stats', () => {
-    // Template
     const is_paginate = false
     const method = 'get'
     const token = generateAuthToken("hardcode")
