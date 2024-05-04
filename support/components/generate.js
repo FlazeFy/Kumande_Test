@@ -37,6 +37,23 @@ export const generateDatetimeStr = (min) => {
     return res
 }
 
+export const generateRandDate = () => {
+    const start = new Date('2020-01-01T00:00:00').getTime()
+    const end = new Date().getTime()
+    let res = Math.floor(Math.random() * (end - start + 1)) + start
+    res = new Date(res)
+    console.log(res)
+
+    return res
+}
+
+export const generateDayName = (date) => {
+    const daysName = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+    const dayIdx = date.getDay()
+    const res = daysName[dayIdx]
+
+    return res
+}
 
 export const  generateRandNumber= (max, min) => {
     const res = Math.floor(Math.random() * max) + min
