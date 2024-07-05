@@ -31,3 +31,43 @@ Cypress.Commands.add('templatePost', (obj, builder) => {
         expect(obj.body.data[key]).to.eq(value)
     });
 });
+
+
+Cypress.Commands.add('templatePagination', (url, max) => {
+    for (let index = 1; index <= max; index++) {
+        cy.request({
+            method: 'GET', 
+            url: url + '?page='+index,
+        }).then(dt => {
+            expect(dt.status).to.equal(200)
+        })
+    }
+});
+
+Cypress.Commands.add('templateValidateColumn', (data, obj, dataType, nullable) => {
+    const dataArray = Array.isArray(data) ? data : [data];
+
+    dataArray.forEach((item) => {
+        expect(item).to.be.an('object')
+        obj.forEach((field) => {
+            expect(item).to.have.property(field)
+            if (nullable && item[field] === null) {
+                expect(item[field]).to.be.null
+            } else {
+                expect(item[field]).to.be.a(dataType)
+
+                if (dataType === "number") {
+                    expect(item[field] % 1).to.equal(0)
+                }
+            }
+        });
+    });
+});
+
+Cypress.Commands.add('templateValidateContain', (data, list, target) => {
+    // Test
+    data.forEach((item) => {
+        expect(item).to.be.an('object')
+        expect(list).to.include(item[target])
+    });
+});
