@@ -10,7 +10,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
     const yr = 2023
     const mon = 4
 
-    it(method.toUpperCase() + ' - TodaySchedule (TC-S001)', () => {
+    it(method.toUpperCase() + ' - Today Schedule (TC-S001)', () => {
         const day = generateDayName(date)
 
         cy.request({
@@ -20,23 +20,51 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TodaySchedule')
-        cy.get('@' + method + 'TodaySchedule').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TodaySchedule').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['id','schedule_consume','consume_type','created_at','created_by']
+            const stringNullableFields = ['firebase_id','consume_id','schedule_desc']
+            const arrayFields = ['consume_detail','schedule_time']
+            const arrayNullableFields = ['schedule_tag']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, stringNullableFields, 'string', true)
+            cy.templateValidateColumn(dataArr, arrayFields, 'array', false)
+            cy.templateValidateColumn(dataArr, arrayNullableFields, 'array', true)
         })
     })
 
-    it(method.toUpperCase() + ' - TodayCalories (TC-S002)', () => {
-        const day = generateDayName(date)
-
+    it(method.toUpperCase() + ' - Today Calories (TC-S002)', () => {
         cy.request({
             method: method,
-            url: `/api/v1/analytic/payment/month/${mon}/year/${yr}`,
+            url: `/api/v1/count/calorie/fulfill/2024-07-05`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TodayCalories')
-        cy.get('@' + method + 'TodayCalories').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TodayCalories').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const intFields = ['total','target']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -48,8 +76,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TotalConsumeByFrom')
-        cy.get('@' + method + 'TotalConsumeByFrom').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TotalConsumeByFrom').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -61,8 +103,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TotalConsumeByType')
-        cy.get('@' + method + 'TotalConsumeByType').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TotalConsumeByType').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -74,8 +130,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TotalConsumeByMain')
-        cy.get('@' + method + 'TotalConsumeByMain').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TotalConsumeByMain').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -87,8 +157,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TotalConsumeByProvide')
-        cy.get('@' + method + 'TotalConsumeByProvide').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'TotalConsumeByProvide').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -100,21 +184,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'TotalSpendThisYear')
-        cy.get('@' + method + 'TotalSpendThisYear').then(stats => {
-            cy.templateGet(stats, is_paginate)
-        })
-    })
+        cy.get('@' + method + 'TotalSpendThisYear').then(dt => {
+            cy.templateGet(dt, is_paginate)
 
-    it(method.toUpperCase() + ' - Total Daily Calorie This Month (TC-S009)', () => {
-        cy.request({
-            method: method,
-            url: `/api/v1/consume/total/day/cal/month/${mon}/year/${yr}`,
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
-        }).as(method + 'TotalDailyCalorieThisMonth')
-        cy.get('@' + method + 'TotalDailyCalorieThisMonth').then(stats => {
-            cy.templateGet(stats, is_paginate)
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -126,8 +211,20 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'MySchedule')
-        cy.get('@' + method + 'MySchedule').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'MySchedule').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['day','time','schedule_consume']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
         })
     })
 
@@ -139,12 +236,26 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'CalendarDailySpending')
-        cy.get('@' + method + 'CalendarDailySpending').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'CalendarDailySpending').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
-    it(method.toUpperCase() + ' - Calendar Daily Calorie (TC-C003)', () => {
+    it(method.toUpperCase() + ' - Calendar Daily Calorie (TC-C003 & TC-S009)', () => {
         cy.request({
             method: method,
             url: `/api/v1/consume/total/day/cal/month/${mon}/year/${yr}`,
@@ -152,8 +263,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'CalendarDailyCalorie')
-        cy.get('@' + method + 'CalendarDailyCalorie').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'CalendarDailyCalorie').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -165,8 +290,20 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'AnalyticSpendByMonth')
-        cy.get('@' + method + 'AnalyticSpendByMonth').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'AnalyticSpendByMonth').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const intFields = ['average','max','min','total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -178,8 +315,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'BodyInfo')
-        cy.get('@' + method + 'BodyInfo').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'BodyInfo').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['created_at']
+            const intFields = ['weight','height','result']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -191,21 +342,47 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'SpendingInfo')
-        cy.get('@' + method + 'SpendingInfo').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'SpendingInfo').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const intFields = ['total_days','total_payment']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
-    it(method.toUpperCase() + ' - Budget Spending This Year (TC-S010)', () => {
+    it(method.toUpperCase() + ' - Budget Spending BY Year (TC-S010)', () => {
         cy.request({
             method: method,
-            url: `/api/v1/budget/${yr}`,
+            url: `/api/v1/budget/by/${yr}`,
             headers: {
                 Authorization: `Bearer ${token}`
             }
-        }).as(method + 'BudgetSpendingThisYear')
-        cy.get('@' + method + 'BudgetSpendingThisYear').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        }).as(method + 'BudgetSpendingByYear')
+        cy.get('@' + method + 'BudgetSpendingByYear').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 
@@ -217,8 +394,22 @@ describe('Kumande API Testing - Stats & Calendar', () => {
                 Authorization: `Bearer ${token}`
             }
         }).as(method + 'ConsumeTotal')
-        cy.get('@' + method + 'ConsumeTotal').then(stats => {
-            cy.templateGet(stats, is_paginate)
+        cy.get('@' + method + 'ConsumeTotal').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const stringFields = ['context']
+            const intFields = ['total']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
 })

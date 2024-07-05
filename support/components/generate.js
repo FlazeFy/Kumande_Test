@@ -4,8 +4,8 @@ export const  generateAuthToken= (type) => {
     if(type == "hardcode"){
         // email : flazen.edu@gmail.com,
         // password : nopass123
-        // Signed in at 07/2/24 19:51 WIB
-        res = "285|BMsYhez6WDc3YKXCOWxXxIL3dp5cEDuRshUHczUu"
+        // Signed in at 05/7/24 23:12 WIB
+        res = "465|G9cLxsFBMzw0MgkI6eAByxmRHDoKNTlhj1wYLtg44d8e8884"
     }
 
     return res
