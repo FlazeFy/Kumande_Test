@@ -12,6 +12,8 @@
     "cypress": "^13.6.2"
   },
   "dependencies": {
-    "random-words": "^2.0.1"
+    "firebase": "^10.12.3",
+    "random-words": "^2.0.1",
+    "selenium-webdriver": "^4.22.0"
   }
 }
