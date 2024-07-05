@@ -25,13 +25,13 @@ async function tc_001_login() {
         // Test Step 3 : Pengguna menekan button submit
         await driver.findElement(By.id('submit-btn')).click()
 
-        await driver.wait(until.elementLocated(By.id('sidebar')), 10000)
+        await driver.wait(until.urlContains('dashboard'), 10000)
         let screenshot_2 = await driver.takeScreenshot()
         fs.writeFileSync(`TC-001-Step 3-Test Data on ${date}.png`, screenshot_2, 'base64')
         
         await driver.executeScript('alert("TC-001 Login Test Success")')
         await driver.wait(until.alertIsPresent())
-        await driver.switchTo().alert().accept()
+        await driver.switchTo().alert()
 
         // Audit
         let data = {
@@ -52,7 +52,7 @@ async function tc_001_login() {
         };
         await add_firestore(data, 'test_audit_kumande')
     } catch (error) {
-        await driver.executeScript(`alert("${error}")`);
+        console.error('Error occurred:', error.message)
     } finally {
         await driver.quit()
     }
