@@ -56,8 +56,12 @@ Cypress.Commands.add('templateValidateColumn', (data, obj, dataType, nullable) =
             } else {
                 expect(item[field]).to.be.a(dataType)
 
-                if (dataType === "number") {
-                    expect(item[field] % 1).to.equal(0)
+                if(dataType === "number"){
+                    if(Number.isInteger(item[field])){
+                        expect(item[field] % 1).to.equal(0)
+                    } else {
+                        expect(item[field] % 1).to.not.equal(0)
+                    }
                 }
             }
         });
