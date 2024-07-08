@@ -412,4 +412,58 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             cy.templateValidateColumn(dataArr, intFields, 'number', false)
         })
     })
+
+    it(method.toUpperCase() + ' - Calorie Max Min', () => {
+        cy.request({
+            method: method,
+            url: '/api/v1/consume/calorie/maxmin',
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).as(method + 'CalorieMaxMin')
+        cy.get('@' + method + 'CalorieMaxMin').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const intFields = ['max_calorie','min_calorie','avg_calorie']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
+        })
+    })
+
+    it(method.toUpperCase() + ' - Calorie Total By Consume Type', () => {
+        const type = 'all'
+
+        cy.request({
+            method: method,
+            url: `/api/v1/consume/calorie/bytype/${type}`,
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }).as(method + 'CalorieTotalByConsumeType')
+        cy.get('@' + method + 'CalorieTotalByConsumeType').then(dt => {
+            cy.templateGet(dt, is_paginate)
+
+            // Get item holder
+            const resultItem = dt.body
+            expect(resultItem).to.have.property('data')
+            const dataArr = resultItem.data
+            expect(dataArr).to.be.an('array')
+
+            // Get list key / column
+            const intFields = ['calorie']
+            const stringFields = ['consume_type']
+
+            // Validate column
+            cy.templateValidateColumn(dataArr, stringFields, 'string', false)
+            cy.templateValidateColumn(dataArr, intFields, 'number', false)
+        })
+    })
 })
