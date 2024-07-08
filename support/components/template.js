@@ -69,9 +69,31 @@ Cypress.Commands.add('templateValidateColumn', (data, obj, dataType, nullable) =
 });
 
 Cypress.Commands.add('templateValidateContain', (data, list, target) => {
-    // Test
-    data.forEach((item) => {
+    data.forEach((item, idx) => {
         expect(item).to.be.an('object')
-        expect(list).to.include(item[target])
+        expect(list,`Column ${target} with value = ${item[target]} must contain in list. Index Data : ${idx}`).to.include(item[target])
     });
 });
+
+Cypress.Commands.add('templateOrdering', (data, target, typeOrdering, typeData) => {
+    data.forEach((item,idx)=> {
+        expect(item).to.be.an('object')
+
+        if(idx < data.length - 1){
+            if(typeData == 'number'){
+                const current_value = parseInt(item[target]) 
+                const next_value = parseInt(data[idx+1][target])
+
+                if(typeOrdering == 'ascending'){
+                    expect(next_value, 
+                        `Column ${target} with current value (Idx : ${idx}) = ${current_value} must be lower than or equal to next value (Idx : ${idx+1}) = ${next_value}`
+                        ).to.be.least(current_value)
+                } else if(typeOrdering == 'descending'){
+                    expect(next_value,
+                        `Column ${target} with current value (Idx : ${idx}) = ${current_value} must be greater than or equal to next value (Idx : ${idx+1}) = ${next_value}`
+                        ).to.be.most(current_value)
+                }
+            } 
+        }
+    })
+})
