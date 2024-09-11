@@ -25,13 +25,18 @@ Cypress.Commands.add('templatePost', (obj, builder) => {
     // Test
     expect(obj.status).to.equal(200)
     expect(obj.body.message).to.be.a('string')
-    // expect(obj.body.data.rows_affected).to.eq(1)
     
-    Object.entries(builder).forEach(([key, value]) => {
-        expect(obj.body.data[key]).to.eq(value)
-    });
-});
+    if(builder){
+        Object.entries(builder).forEach(([key, value]) => {
+            expect(obj.body.data[key]).to.eq(value)
+        });
+    }
 
+    expect(obj.body.data).to.have.property('id')
+    expect(obj.body.data).to.have.property('created_at')
+    expect(typeof obj.body.data.id).to.eq('string')
+    expect(typeof obj.body.data.created_at).to.eq('string')
+});
 
 Cypress.Commands.add('templatePagination', (url, max) => {
     for (let index = 1; index <= max; index++) {

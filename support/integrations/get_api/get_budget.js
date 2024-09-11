@@ -56,13 +56,13 @@ describe('Kumande API Testing - Budget', () => {
                 const remain_budget_expect =  budget_total_res - total_price_res
                 expect(remain_budget_expect,`Remain budget must be equal to budget total - total price. Index Data : ${idx}`).to.equal(remain_budget_res)
 
-                // Contain validation
-                const monthNameShort = generateMonthName('all','short')
-                cy.templateValidateContain(dataArr,monthNameShort,'month')
-
                 // Ordering validation
                 cy.templateOrdering(dataArr,'year','descending','number')
             });
+
+            // Contain validation
+            const monthNameShort = generateMonthName('all','short')
+            cy.templateValidateContain(dataArr,monthNameShort,'month')
 
             // Total All must equal to sum Total Price all budget
             expect(resultItem.total_all, 'Total All must equal to sum Total Price all budget').to.equal(total_all_expect)
