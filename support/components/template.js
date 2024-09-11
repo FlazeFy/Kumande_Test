@@ -38,6 +38,12 @@ Cypress.Commands.add('templatePost', (obj, builder) => {
     expect(typeof obj.body.data.created_at).to.eq('string')
 });
 
+Cypress.Commands.add('templateDelete', (obj) => {
+    // Test
+    expect(obj.status).to.equal(200)
+    expect(obj.body.message).to.be.a('string')
+});
+
 Cypress.Commands.add('templatePagination', (url, max) => {
     for (let index = 1; index <= max; index++) {
         cy.request({

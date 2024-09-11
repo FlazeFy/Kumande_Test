@@ -29,7 +29,7 @@ describe('Kumande API Testing - Stats', () => {
     it(method.toUpperCase() + ' - Post Allergic', () => {
         const body = {
             "allergic_context" : "allergic type A",
-            "allergic_desc" : "lorem ipsum",
+            "allergic_desc" : "testing allergic",
         }
         cy.request({
             method: method,
