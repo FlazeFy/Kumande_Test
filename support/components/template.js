@@ -44,6 +44,15 @@ Cypress.Commands.add('templateDelete', (obj) => {
     expect(obj.body.message).to.be.a('string')
 });
 
+Cypress.Commands.add('templatePut', (obj) => {
+    // Test
+    expect(obj.status).to.equal(200)
+    expect(obj.body.message).to.be.a('string')
+
+    expect(obj.body.data).to.have.property('id')
+    expect(typeof obj.body.data.id).to.eq('string')
+});
+
 Cypress.Commands.add('templatePagination', (url, max) => {
     for (let index = 1; index <= max; index++) {
         cy.request({
