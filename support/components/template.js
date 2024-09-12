@@ -49,8 +49,8 @@ Cypress.Commands.add('templatePut', (obj) => {
     expect(obj.status).to.equal(200)
     expect(obj.body.message).to.be.a('string')
 
-    expect(obj.body.data).to.have.property('id')
-    expect(typeof obj.body.data.id).to.eq('string')
+    expect(obj.body).to.have.property('rows_affected')
+    expect(typeof obj.body.rows_affected).to.eq('number')
 });
 
 Cypress.Commands.add('templatePagination', (url, max) => {

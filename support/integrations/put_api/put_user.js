@@ -22,13 +22,13 @@ describe('Kumande API Testing - User', () => {
             body: body
         }).as(method + 'EditProfile')
         cy.get('@' + method + 'EditProfile').then(dt => {
-            cy.templatePost(dt,null)
+            cy.templatePut(dt,null)
         })
     })
 
     it(method.toUpperCase() + ' - Edit Telegram ID', () => {
         const body = {
-            'telegram_user_id' : '123456789',
+            'telegram_user_id' : '1317625971',
         }
         cy.request({
             method: method,
@@ -39,32 +39,28 @@ describe('Kumande API Testing - User', () => {
             body: body
         }).as(method + 'EditTelegramID')
         cy.get('@' + method + 'EditTelegramID').then(dt => {
-            cy.templatePost(dt,null)
+            cy.templatePut(dt,null)
         })
     })
 
     it(method.toUpperCase() + ' - Edit Telegram ID QR Code', () => {
         const body = {
             "id" : "157c5f24-8f7f-11ee-b9d1-0242ac120002",
-            'telegram_user_id' : '123456789',
+            'telegram_user_id' : '1317625977',
         }
         cy.request({
             method: method,
             url: '/api/v1/user/edit_telegram_id_qrcode',
-            headers: {
-                Authorization: `Bearer ${token}`
-            },
             body: body
         }).as(method + 'EditTelegramIDQrCode')
         cy.get('@' + method + 'EditTelegramIDQrCode').then(dt => {
-            cy.templatePost(dt,null)
+            cy.templatePut(dt,null)
         })
     })
 
     it(method.toUpperCase() + ' - Edit Timezone', () => {
         const body = {
-            "id" : "157c5f24-8f7f-11ee-b9d1-0242ac120002",
-            'telegram_user_id' : '123456789',
+            'timezone' : '+07:00',
         }
         cy.request({
             method: method,
@@ -75,7 +71,7 @@ describe('Kumande API Testing - User', () => {
             body: body
         }).as(method + 'EditTimezone')
         cy.get('@' + method + 'EditTimezone').then(dt => {
-            cy.templatePost(dt,null)
+            cy.templatePut(dt,null)
         })
     })
 
@@ -92,7 +88,7 @@ describe('Kumande API Testing - User', () => {
             body: body
         }).as(method + 'EditProfileImage')
         cy.get('@' + method + 'EditProfileImage').then(dt => {
-            cy.templatePost(dt,null)
+            cy.templatePut(dt,null)
         })
     })
 })
