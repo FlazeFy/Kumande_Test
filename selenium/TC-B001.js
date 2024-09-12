@@ -117,7 +117,7 @@ async function tc_b002_see_budget_dashboard() {
         // Audit
         let data = {
             pic: 'Leonardho R Sitanggang',
-            tc_id: 'TC-B002',
+            tc_id: 'TC-B001',
             tc_name: 'See budget dashboard',
             tc_desc: 'Validate Test Steps for See budget dashboard',
             tc_data: {
