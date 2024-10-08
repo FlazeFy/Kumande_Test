@@ -117,3 +117,25 @@ Cypress.Commands.add('templateOrdering', (data, target, typeOrdering, typeData) 
         }
     })
 })
+
+// End to End Component
+Cypress.Commands.add('templateE2EValidateConsumeBox', () => {
+    cy.get('#consume-holder').wait(2000).should('exist').children() 
+        .each(($el) => {
+            cy.wrap($el).find('.consume-name-holder').should('exist')
+            cy.wrap($el).find('.consume-comment-holder').should('exist')
+            cy.wrap($el).find('.consume-payment-holder').should('exist').and(($consumePayment) => {
+                const text = $consumePayment.text()
+                expect(text).to.match(/Free|Rp. /)
+
+                if(text !== 'Free'){
+                    const price = parseInt(text.replace('Rp. ','').replace(',',''))
+                    expect(price).to.be.greaterThan(0)
+                }
+            });
+            cy.wrap($el).find('.consume-provide-holder').should('exist')
+            cy.wrap($el).find('.consume-calorie-holder').should('exist').contains('Cal')
+            cy.wrap($el).find('.consume-main-ing-holder').should('exist')
+            cy.wrap($el).find('.consume-created-at-holder').should('exist').contains('At')
+        })
+})
