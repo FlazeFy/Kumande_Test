@@ -21,7 +21,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TodaySchedule')
         cy.get('@' + method + 'TodaySchedule').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -52,7 +52,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TodayCalories')
         cy.get('@' + method + 'TodayCalories').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -77,7 +77,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TotalConsumeByFrom')
         cy.get('@' + method + 'TotalConsumeByFrom').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -104,7 +104,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TotalConsumeByType')
         cy.get('@' + method + 'TotalConsumeByType').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -131,7 +131,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TotalConsumeByMain')
         cy.get('@' + method + 'TotalConsumeByMain').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -158,7 +158,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TotalConsumeByProvide')
         cy.get('@' + method + 'TotalConsumeByProvide').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -185,7 +185,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'TotalSpendThisYear')
         cy.get('@' + method + 'TotalSpendThisYear').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -212,7 +212,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'MySchedule')
         cy.get('@' + method + 'MySchedule').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -237,7 +237,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'CalendarDailySpending')
         cy.get('@' + method + 'CalendarDailySpending').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -264,7 +264,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'CalendarDailyCalorie')
         cy.get('@' + method + 'CalendarDailyCalorie').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -291,7 +291,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'AnalyticSpendByMonth')
         cy.get('@' + method + 'AnalyticSpendByMonth').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -316,7 +316,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'BodyInfo')
         cy.get('@' + method + 'BodyInfo').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -343,7 +343,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'SpendingInfo')
         cy.get('@' + method + 'SpendingInfo').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -368,7 +368,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'BudgetSpendingByYear')
         cy.get('@' + method + 'BudgetSpendingByYear').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -395,7 +395,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'ConsumeTotal')
         cy.get('@' + method + 'ConsumeTotal').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -422,7 +422,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'CalorieMaxMin')
         cy.get('@' + method + 'CalorieMaxMin').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -449,7 +449,7 @@ describe('Kumande API Testing - Stats & Calendar', () => {
             }
         }).as(method + 'CalorieTotalByConsumeType')
         cy.get('@' + method + 'CalorieTotalByConsumeType').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body

@@ -16,7 +16,7 @@ describe('Kumande API Testing - Tag', () => {
             }
         }).as(method + 'AllTag')
         cy.get('@' + method + 'AllTag').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body

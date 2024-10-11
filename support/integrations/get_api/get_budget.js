@@ -16,7 +16,7 @@ describe('Kumande API Testing - Budget', () => {
             }
         }).as(method + 'DashboardBudget')
         cy.get('@' + method + 'DashboardBudget').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body

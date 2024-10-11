@@ -1,4 +1,4 @@
-Cypress.Commands.add('templateGet', (obj, is_paginate) => {
+Cypress.Commands.add('templateGet', (code, obj, is_paginate) => {
     let dataType
 
     // Builder
@@ -9,14 +9,14 @@ Cypress.Commands.add('templateGet', (obj, is_paginate) => {
     }
 
     // Test
-    expect(obj.status).to.equal(200)
+    expect(obj.status).to.equal(code)
     expect(obj.body.message).to.be.a('string')
 
-    if(is_paginate == false){
+    if(is_paginate == false && code == 200){
         expect(obj.body.data).to.be.a(dataType)
     }
 
-    if(is_paginate == true){
+    if(is_paginate == true && code == 200){
         expect(obj.body.data.data).to.be.a('array')
     }
 });
@@ -139,3 +139,18 @@ Cypress.Commands.add('templateE2EValidateConsumeBox', () => {
             cy.wrap($el).find('.consume-created-at-holder').should('exist').contains('At')
         })
 })
+
+Cypress.Commands.add('templateE2ELogin', (email, password) => {
+    return cy.request({
+        method: 'POST', 
+        url: 'api/v1/login',
+        body: {
+            email: email,
+            password: password,
+        },
+    }).then(res => {
+        expect(res.status).to.equal(200)
+        const token = res.body.token
+        return token
+    });
+});

@@ -17,7 +17,7 @@ describe('Kumande API Testing - Consume', () => {
             }
         }).as(method + 'AllConsumeList')
         cy.get('@' + method + 'AllConsumeList').then(dt => {
-            cy.templateGet(dt, true)
+            cy.templateGet(200,dt, true)
 
             // Get item holder
             const resultItem = dt.body
@@ -46,7 +46,7 @@ describe('Kumande API Testing - Consume', () => {
             }
         }).as(method + 'AllListConsume')
         cy.get('@' + method + 'AllListConsume').then(dt => {
-            cy.templateGet(dt, false)
+            cy.templateGet(200,dt, false)
 
             // Get item holder
             const resultItem = dt.body
@@ -78,7 +78,7 @@ describe('Kumande API Testing - Consume', () => {
             }
         }).as(method + 'AllConsume')
         cy.get('@' + method + 'AllConsume').then(dt => {
-            cy.templateGet(dt, true)
+            cy.templateGet(200,dt, true)
 
             // Get item holder
             const resultItem = dt.body

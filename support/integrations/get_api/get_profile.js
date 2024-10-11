@@ -16,7 +16,7 @@ describe('Kumande API Testing - Profile', () => {
             }
         }).as(method + 'MyProfile')
         cy.get('@' + method + 'MyProfile').then(dt => {
-            cy.templateGet(dt, is_paginate)
+            cy.templateGet(200,dt, is_paginate)
 
             // Get item holder
             const resultItem = dt.body
@@ -43,7 +43,7 @@ describe('Kumande API Testing - Profile', () => {
             }
         }).as(method + 'MyBodyInfo')
         cy.get('@' + method + 'MyBodyInfo').then(dt => {
-            cy.templateGet(dt, null)
+            cy.templateGet(200,dt, null)
 
             // Get item holder
             const resultItem = dt.body
