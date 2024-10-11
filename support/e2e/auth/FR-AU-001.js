@@ -150,7 +150,7 @@ describe('Auth Module', () => {
         // Step 3 : User click "Sign In" button
         cy.get('#submit-btn').should('exist').click()
 
-        // Expected Result : System will stay in login page and show alert message `The password must be at least 10 characters`
+        // Expected Result : System will stay in login page and show alert message `The password must be at least 6 characters`
         cy.url().should('include', '/login') 
         cy.get('#login-failed-msg').should('exist')
         const textContainInFailedMsg = [`The password must be at least 6 characters`]
@@ -178,7 +178,7 @@ describe('Auth Module', () => {
         // Step 3 : User click "Sign In" button
         cy.get('#submit-btn').should('exist').click()
 
-        // Expected Result : System will stay in login page and show alert message `Email doesn't exist`
+        // Expected Result : System will stay in login page and show alert message `The email must not be greater than 75 characters`
         cy.url().should('include', '/login') 
         cy.get('#login-failed-msg').should('exist')
         const textContainInFailedMsg = [`The email must not be greater than 75 characters`]
@@ -206,7 +206,7 @@ describe('Auth Module', () => {
         // Step 3 : User click "Sign In" button
         cy.get('#submit-btn').should('exist').click()
 
-        // Expected Result : System will stay in login page and show alert message `Wrong password`
+        // Expected Result : System will stay in login page and show alert message `The password must not be greater than 50 characters`
         cy.url().should('include', '/login') 
         cy.get('#login-failed-msg').should('exist')
         const textContainInFailedMsg = [`The password must not be greater than 50 characters`]
